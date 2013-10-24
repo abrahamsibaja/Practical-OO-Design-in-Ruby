@@ -1,9 +1,13 @@
-chainring = 52
-cog = 11
-ratio = chainring / cog.to_f
-puts ratio
+class Gear
+  attr_reader :chainring, :cog
+  def initialize(chainring, cog)
+    @chainring = chainring
+    @cog = cog
+  end
 
-chainring = 30
-cog = 10
-ratio = chainring / cog.to_f
-puts ratio
+  def ratio
+    chainring / cog.to_f
+  end
+end
+
+puts Gear.new(30,10).ratio

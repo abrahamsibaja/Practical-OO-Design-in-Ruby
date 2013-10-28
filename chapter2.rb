@@ -1,21 +1,25 @@
 class Gear
-  attr_reader :chainring, :cog
-  def initialize(chainring, cog)
+  attr_reader :chainring, :cog, :wheel
+  def initialize(chainring, cog, wheel=nil)
     @chainring  = chainring
     @cog        = cog
+    @wheel      = wheel
   end
 
   def ratio
     chainring / cog.to_f
   end
+
+  def gearInches
+    ratio * wheel.diameter
+  end
 end
 
-puts Gear.new(52, 11).ratio
-
-class RevealingReferences
-  attr_reader :wheels
-  def initialize (data)
-    @wheels = wheelify(data)
+class Wheel
+  attr_reader :rim, :tire
+  def initialize (rim, tire)
+    @rim = rim
+    @tire = tire
   end
 
   Wheel = Struct.new(:rim, :tire)
@@ -23,9 +27,19 @@ class RevealingReferences
     data.collect {|cell| Wheel.new(cell[0], cell[1])}
   end
 
-  def diameters
-    wheels.collect {|wheel| wheel.rim + (wheel.tire * 2)}
+  def diameter
+    rim + (tire * 2)
   end
+
+  def circumference
+    diameter * Math::PI
+  end
+
 end
 
-puts RevealingReferences.new([[30,15],[10,10]]).diameters
+@wheel = Wheel.new(26, 1.5)
+puts @wheel.circumference
+
+puts Gear.new(52, 11, @wheel).gearInches
+
+puts Gear.new(52, 11).ratio

@@ -4,6 +4,11 @@ class Gear
   def initialize(chainring, cog, rim, tire)
     @chainring  = chainring
     @cog        = cog
+    @rim        = rim
+    @tire       = tire
+  end
+
+  def wheel
     @wheel      = Wheel.new(rim, tire)
   end
 
@@ -12,7 +17,7 @@ class Gear
   end
 
   def gearInches
-    ratio * @wheel.diameter
+    ratio * wheel.diameter
   end
 end
 

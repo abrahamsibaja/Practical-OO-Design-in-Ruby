@@ -2,10 +2,15 @@ system('clear')
 class Gear
   attr_reader :chainring, :cog, :rim, :tire
   def initialize(args)
-    @chainring  = args.fetch(:chainring, 52)
-    @cog        = args.fetch(:cog, 11)
+    args = defaults.merge(args)
+    @chainring  = args(:chainring)
+    @cog        = args(:cog)
     @rim        = args[:rim]
     @tire       = args[:tire]
+  end
+
+  def defaults
+    {:chainring => 40, :cog => 18}
   end
 
   def wheel

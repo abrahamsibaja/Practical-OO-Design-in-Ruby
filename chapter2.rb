@@ -2,8 +2,8 @@ system('clear')
 class Gear
   attr_reader :chainring, :cog, :rim, :tire
   def initialize(args)
-    @chainring  = args[:chainring] || 52
-    @cog        = args[:cog]       || 18
+    @chainring  = args.fetch(:chainring, 52)
+    @cog        = args.fetch(:cog, 11)
     @rim        = args[:rim]
     @tire       = args[:tire]
   end

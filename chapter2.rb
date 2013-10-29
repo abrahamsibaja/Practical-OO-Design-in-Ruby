@@ -9,15 +9,19 @@ class Gear
   end
 
   def wheel
-    @wheel      = Wheel.new(rim, tire)
+    @wheel = Wheel.new(rim, tire)
   end
 
   def ratio
     chainring / cog.to_f
   end
 
+  def diameter
+    wheel.diameter
+  end
+
   def gearInches
-    ratio * wheel.diameter
+    ratio * diameter
   end
 end
 

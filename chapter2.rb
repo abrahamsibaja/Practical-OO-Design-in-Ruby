@@ -3,8 +3,8 @@ class Gear
   attr_reader :chainring, :cog, :rim, :tire
   def initialize(args)
     args = defaults.merge(args)
-    @chainring  = args(:chainring)
-    @cog        = args(:cog)
+    @chainring  = args[:chainring]
+    @cog        = args[:cog]
     @rim        = args[:rim]
     @tire       = args[:tire]
   end
